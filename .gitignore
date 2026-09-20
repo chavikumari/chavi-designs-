@@ -1,4 +1,4 @@
-work/
-outputs/
-.sites-runtime/
+/work/
+/outputs/
+/.sites-runtime/
 .DS_Store
