@@ -103,3 +103,25 @@
     body.querySelector('#save-doodle').addEventListener('click',()=>{const a=document.createElement('a');a.download='my-chavi-playroom-doodle.png';a.href=canvas.toDataURL('image/png');a.click();status('Your drawing is ready to keep.');});
   }
 })();
+
+// Home testimonials: show one chalkboard note at a time.
+(()=>{
+  const board=document.querySelector('.review-board');
+  if(!board)return;
+  const notes=[...board.querySelectorAll('.review-note')];
+  if(notes.length<2)return;
+  let current=0;
+  const controls=document.createElement('div');
+  controls.className='review-controls';
+  controls.innerHTML='<button type="button" class="review-prev" aria-label="Previous testimonial">←</button><span class="review-count" aria-live="polite"></span><button type="button" class="review-next" aria-label="Next testimonial">→</button>';
+  board.after(controls);
+  const count=controls.querySelector('.review-count');
+  const show=index=>{
+    current=(index+notes.length)%notes.length;
+    notes.forEach((note,i)=>{note.hidden=i!==current;note.classList.toggle('is-current',i===current);});
+    count.textContent=`${current+1} / ${notes.length}`;
+  };
+  controls.querySelector('.review-prev').addEventListener('click',()=>show(current-1));
+  controls.querySelector('.review-next').addEventListener('click',()=>show(current+1));
+  show(0);
+})();
