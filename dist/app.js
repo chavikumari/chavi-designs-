@@ -33,28 +33,28 @@
   }));
   function shuffled(list) { const a = [...list]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
   function memory() {
-    clean(); title.textContent = 'A match made in colour.';
-    const faces = [{s:'✳',n:'star'},{s:'♥',n:'heart'},{s:'●',n:'circle'},{s:'✿',n:'flower'}];
+    clean(); title.textContent = 'A match made in the studio.';
+    const faces = [{s:'burp',n:'Burp!'},{s:'bean-there',n:'Bean There'},{s:'foxy',n:'Foxy'},{s:'aurentum',n:'Aurentum Jewellery'},{s:'real-chai',n:'The Real Chai Company'},{s:'act-ii',n:'Act II: Fun Land'}];
     const deck = shuffled([...faces, ...faces]);
     let first = null, locked = false, moves = 0, pairs = 0;
-    body.innerHTML = '<p class="game-instructions">Find the four matching pairs. No rush — your creative break starts here.</p><div class="memory-board"></div><div class="game-status"><span id="memory-count">0 moves · 0 / 4 pairs</span><button id="restart-memory">Start again ↻</button></div><p class="game-result" role="status" aria-live="polite"></p>';
+    body.innerHTML = '<p class="game-instructions">Six brand worlds, six matching pairs. Flip the cards and find the projects that belong together.</p><div class="memory-board"></div><div class="game-status"><span id="memory-count">0 moves · 0 / 6 pairs</span><button id="restart-memory">Start again ↻</button></div><p class="game-result" role="status" aria-live="polite"></p>';
     const board = body.querySelector('.memory-board');
     deck.forEach((face,i) => {
       const tile = document.createElement('button'); tile.className = 'memory-card'; tile.textContent = '?'; tile.setAttribute('aria-label', `Reveal card ${i+1}`);
       tile.addEventListener('click', () => {
         if (locked || tile.classList.contains('flipped') || tile.classList.contains('matched')) return;
-        tile.textContent = face.s; tile.classList.add('flipped'); tile.setAttribute('aria-label', `Card ${i+1}: ${face.n}`);
+        const image=document.createElement('img');image.src=`/assets/${face.s}.webp`;image.alt=face.n;tile.replaceChildren(image);tile.classList.add('flipped');tile.setAttribute('aria-label', `Card ${i+1}: ${face.n}`);
         if (first === null) { first = {tile,face,index:i}; return; }
         moves++;
         if (first.face.n === face.n) {
           pairs++; first.tile.classList.add('matched'); tile.classList.add('matched'); first.tile.setAttribute('aria-disabled','true'); tile.setAttribute('aria-disabled','true'); first = null;
-          status(pairs === 4 ? `All four pairs! A lovely little brain break in ${moves} moves.` : 'A perfect pair. Keep going!');
+          status(pairs === 6 ? `You paired all six brands in ${moves} moves! A very good eye for design.` : `${face.n}: a perfect pair!`);
         } else {
           locked = true; const previous = first;
-          timers.push(setTimeout(() => { [previous.tile,tile].forEach((t,k) => { t.textContent = '?'; t.classList.remove('flipped'); t.setAttribute('aria-label',`Reveal card ${k===0?previous.index+1:i+1}`); }); first = null; locked = false; },850));
-          status('A little different. Try another pair.');
+          timers.push(setTimeout(() => { [previous.tile,tile].forEach((t,k) => { t.textContent = '?'; t.classList.remove('flipped'); t.setAttribute('aria-label',`Reveal card ${k===0?previous.index+1:i+1}`); }); first = null; locked = false; },1000));
+          status('Two different brand worlds. Try another pair.');
         }
-        body.querySelector('#memory-count').textContent = `${moves} ${moves === 1 ? "move" : "moves"} · ${pairs} / 4 pairs`;
+        body.querySelector('#memory-count').textContent = `${moves} ${moves === 1 ? "move" : "moves"} · ${pairs} / 6 pairs`;
       }); board.append(tile);
     });
     body.querySelector('#restart-memory').addEventListener('click', memory);
@@ -66,7 +66,7 @@
     const board = body.querySelector('.shade-board');
     const draw = () => {
       board.replaceChildren(); locked = false;
-      const odd = Math.floor(Math.random()*9), hues=[330,90,27,170,260], differences=[20,16,13,10,8], hue=hues[round-1];
+      const odd = Math.floor(Math.random()*9), hues=[322,258,216,47,18], differences=[20,16,13,10,8], hue=hues[round-1];
       for (let i=0;i<9;i++) {
         const tile=document.createElement('button'); tile.className='shade-tile'; tile.style.backgroundColor=`hsl(${hue} 62% ${46+(i===odd?differences[round-1]:0)}%)`; tile.setAttribute('aria-label',`Choose swatch ${i+1}`);
         tile.addEventListener('click',()=>{
@@ -82,7 +82,7 @@
   }
   function doodle() {
     clean();title.textContent='No brief. Just doodle.';
-    body.innerHTML='<p class="game-instructions">Pick a colour and make a mark. Use your finger or mouse — or focus the canvas and use arrow keys. Space lifts the pen.</p><div class="game-tools"><button class="pen" style="background:#ed008c" data-pen="#ed008c" aria-label="Pink pen" aria-pressed="true"></button><button class="pen" style="background:#2b1724" data-pen="#2b1724" aria-label="Dark pen" aria-pressed="false"></button><button class="pen" style="background:#6c8846" data-pen="#6c8846" aria-label="Green pen" aria-pressed="false"></button><button class="pen" style="background:#e09437" data-pen="#e09437" aria-label="Orange pen" aria-pressed="false"></button><button id="undo-doodle">Undo</button><button id="clear-doodle">Clear</button><button id="save-doodle">Save drawing ↓</button></div><canvas id="doodle-canvas" tabindex="0" aria-label="Drawing canvas. Arrow keys draw. Space toggles the pen. Home returns to centre."></canvas><p class="canvas-note">Just for you. Drawings stay in this playroom until you close it.</p><p class="game-result" role="status" aria-live="polite"></p>';
+    body.innerHTML='<p class="game-instructions">Pick a colour and make a mark. Use your finger or mouse — or focus the canvas and use arrow keys. Space lifts the pen.</p><div class="game-tools"><button class="pen" style="background:#ed008c" data-pen="#ed008c" aria-label="Pink pen" aria-pressed="true"></button><button class="pen" style="background:#2b1724" data-pen="#2b1724" aria-label="Dark pen" aria-pressed="false"></button><button class="pen" style="background:#976bff" data-pen="#976bff" aria-label="Purple pen" aria-pressed="false"></button><button class="pen" style="background:#8aaef0" data-pen="#8aaef0" aria-label="Blue pen" aria-pressed="false"></button><button id="undo-doodle">Undo</button><button id="clear-doodle">Clear</button><button id="save-doodle">Save drawing ↓</button></div><canvas id="doodle-canvas" tabindex="0" aria-label="Drawing canvas. Arrow keys draw. Space toggles the pen. Home returns to centre."></canvas><p class="canvas-note">Just for you. Drawings stay in this playroom until you close it.</p><p class="game-result" role="status" aria-live="polite"></p>';
   }
   function setupCanvas() {
     const canvas=body.querySelector('canvas'); if(!canvas)return;
