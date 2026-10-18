@@ -1,0 +1,73 @@
+/* Full-width studio sign-off on every page. */
+footer { padding-inline:0; overflow:hidden; }
+.footer-top,.footer-bottom { width:calc(100% - 112px); max-width:1400px; }
+.fluffy-footer-logo { width:104%; max-width:none; margin:0 -2%; transform:none; }
+.fluffy-footer-logo img { display:block; width:100%; height:auto; }
+.fluffy-footer-logo:hover { transform:scale(1.01); }
+footer>.motion-toggle { margin-left:56px; }
+
+/* A small glimpse of real work balances the portfolio introduction. */
+.work-opening { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:65px; align-items:center; }
+.work-opening-visual { width:270px; max-width:85%; justify-self:center; display:block; position:relative; padding:11px 11px 0; background:var(--pale); border:1px solid var(--ink); box-shadow:7px 8px 0 #cdb2f78c; transform:rotate(6deg); transition:transform .25s; }
+.work-opening-visual:before { content:''; position:absolute; top:-15px; left:30%; width:100px; height:30px; background:#c3d6ffdc; transform:rotate(-8deg); }
+.work-opening-visual img { width:100%; aspect-ratio:1; height:auto; object-fit:cover; }
+.work-opening-visual>span { display:block; padding:13px 2px; font-size:14px; text-align:center; }
+.work-opening-visual:hover { transform:rotate(2deg) translateY(-5px); }
+
+/* About follows the founder, her experience, then the personal details. */
+body:has(.about-founder) main#main { display:block; }
+.about-founder { padding-top:75px; padding-bottom:80px; }
+.about-founder .meet-copy h1 { font-size:clamp(2.9rem,4.8vw,5rem); margin:24px 0 30px; }
+.about-world { padding:65px 0; background:var(--lavender); border-block:1px solid #69362f50; }
+.about-world-inner { display:grid; grid-template-columns:1fr 1.1fr; gap:80px; align-items:center; }
+.about-world-number { text-align:center; }
+.about-world-number strong { display:block; font:400 clamp(9rem,19vw,19rem)/1 var(--display); color:var(--pink); letter-spacing:-.04em; }
+.about-world-number strong span { font-size:.55em; vertical-align:top; display:inline-block; padding-top:.15em; }
+.about-world-number>.pixel-font { display:block; font-size:18px; margin-top:20px; }
+.about-world-inner>div:last-child>.pixel-font { font-size:14px; }
+.about-world h2 { font-size:clamp(3rem,5vw,5rem); margin:18px 0 24px; }
+.about-world p { max-width:480px; font-size:15px; line-height:1.9; }
+.about-world .text-link { display:inline-block; margin-top:24px; font-size:14px; }
+.about-heading { display:grid; grid-template-columns:1.1fr 1fr; gap:65px; padding:85px 0; align-items:center; }
+.about-heading h2 { font-size:clamp(2.8rem,4.5vw,4.5rem); margin-top:25px; }
+.about-story p { font-size:15px; line-height:1.9; margin:0 0 20px; }
+.about-story p:last-child { margin-bottom:0; }
+@media(max-width:760px) {
+  .footer-top,.footer-bottom { width:calc(100% - 40px); }
+  .fluffy-footer-logo { width:106%; margin:12px -3%; }
+  footer>.motion-toggle { margin-left:20px; }
+  .work-opening { grid-template-columns:1fr; gap:42px; }
+  .work-opening-visual { width:220px; justify-self:center; margin-bottom:15px; }
+  .about-founder { padding-top:48px; padding-bottom:55px; }
+  .about-founder .meet-copy h1 { font-size:3rem; }
+  .about-world { padding:45px 0 55px; }
+  .about-world-inner { grid-template-columns:1fr; gap:35px; }
+  .about-world-number strong { font-size:10rem; }
+  .about-world-number>.pixel-font { font-size:16px; margin-top:10px; }
+  .about-world h2 { font-size:3.4rem; }
+  .about-world-inner>div:last-child>.pixel-font { font-size:12px; }
+  .about-heading { grid-template-columns:1fr; padding:55px 0; gap:30px; }
+  .about-heading h2 { font-size:3rem; }
+}
+@media(prefers-reduced-motion:reduce) { .work-opening-visual,.fluffy-footer-logo { transition:none; } }
+/* Mobile reading flow: centered copy and calls to action throughout the studio. */
+@media(max-width:760px){
+  .home-desk{overflow-x:clip}
+  main,footer,dialog,.play-card,.portrait-caption{text-align:center}
+  .play-card{align-items:center}
+  .hero-writing,.hero-copy,.hero-intro,.meet-copy,.about-heading,.about-story,.about-world-inner>div,.services-opening-copy,.page-hero,.section-heading,.project-caption,.case-heading,.case-story,.case-review,.package,.extra-grid article,.process-grid article,.values-grid article,.upcoming-copy,.fact-card,.desk-service-sheet,.desk-window-heading,.desk-project{text-align:center}
+  .hero-writing p,.hero-copy p,.meet-copy p,.about-world p,.page-hero p,.section-heading p,.services-opening-copy>p{margin-inline:auto}
+  .hero-actions,.hero-links,.section-heading,.project-caption,.footer-top,.footer-bottom,.footer-bottom>div{justify-content:center;align-items:center}
+  .hero-writing .pixel-label,.hero-copy .pixel-label{margin-inline:auto}
+  .footer-bottom>div{width:100%;flex-wrap:wrap}
+  .about-world .text-link{margin-inline:auto}
+  .desk-service-sheet ul,.package ul{padding-left:0;list-style-position:inside}
+}
+
+/* Home portrait: greeting on the left, coffee note on the right. */
+.scrap-hero .name-tape{left:2%;right:auto}
+.scrap-hero .hero-postit{left:auto;right:-2%}
+@media(max-width:760px){
+ .scrap-hero .name-tape{left:0;right:auto}
+ .scrap-hero .hero-postit{left:auto;right:1%}
+}

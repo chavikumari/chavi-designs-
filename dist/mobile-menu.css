@@ -1,0 +1,23 @@
+.menu-toggle{display:none}
+.mobile-menu{box-sizing:border-box;width:min(440px,calc(100% - 32px));max-height:calc(100dvh - 32px);padding:48px 28px 32px;border:2px solid #684638;border-radius:30px;color:#684638;background:repeating-conic-gradient(#fff5f0 0 25%,#fce6ee 0 50%) 0/40px 40px;box-shadow:7px 8px 0 #c2aae3;text-align:center;overflow:auto}
+.mobile-menu::backdrop{background:#49314688;backdrop-filter:blur(5px)}
+.mobile-menu[open]{animation:menu-pop .28s ease-out}
+.menu-close{position:absolute;right:15px;top:12px;width:40px;height:40px;border:1.5px solid #684638;border-radius:50%;background:#ded0f5;font-size:29px;line-height:1}
+.menu-eyebrow{font-size:11px;letter-spacing:.13em;margin:12px auto 20px}
+.mobile-menu h2{font-size:42px;margin-bottom:24px}
+.mobile-menu nav{display:grid;gap:10px;margin-bottom:22px}
+.mobile-menu nav a{display:block;padding:10px 20px;border:1.5px solid #684638;border-radius:15px;background:#fff5f0;font-size:22px;box-shadow:3px 3px 0 #d7bce9;transition:transform .2s}
+.mobile-menu nav a:nth-child(even){background:#eadffa}
+.mobile-menu nav a[aria-current=page]{background:#ffbad9}
+.mobile-menu nav a:hover{transform:translateY(-3px)}
+.mobile-menu>.button{background:#ffbad9;color:#684638;border-color:#684638}
+@keyframes menu-pop{from{transform:translateY(20px) scale(.94)}to{transform:none}}
+html[data-motion="off"] .mobile-menu[open],body.motion-off .mobile-menu[open]{animation:none}
+@media(max-width:1000px){
+ .site-header{height:82px!important;min-height:82px!important;padding:12px 22px!important;flex-wrap:nowrap!important;gap:16px!important}
+ .site-header>nav,.site-header>.button{display:none!important}
+ .site-header>.logo{width:clamp(150px,25vw,205px)}
+ .site-header>.menu-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;flex-shrink:0;margin-left:auto;width:48px;height:48px;border:1.5px solid #684638;border-radius:16px;background:#ffbad9;box-shadow:3px 3px 0 #d7bce9}
+ .menu-toggle span{display:block;width:21px;height:2px;background:#684638;border-radius:3px}
+}
+@media(prefers-reduced-motion:reduce){.mobile-menu[open]{animation:none}.mobile-menu nav a{transition:none}}
