@@ -10,7 +10,7 @@
       welcome.removeAttribute('aria-hidden');
       const dismiss = () => { clearTimeout(introTimer); welcome.classList.add('leaving'); setTimeout(() => { welcome.hidden = true; }, 350); };
       document.getElementById('skip-intro').addEventListener('click', dismiss);
-      introTimer = setTimeout(dismiss, 7000);
+      introTimer = setTimeout(dismiss, 2000);
     }
   }
   const dialog = document.getElementById('play-dialog');
